@@ -1,15 +1,2 @@
-name: Deploying to QA
-on:
-  push:
-    branches:
-      - main
-jobs:
-  build:
-    name: Build and deploy
-    runs-on: 
-container:
-  image: vickcam/suitecloud-cli-node:1.0
-    steps:
-      - run: suitecloud account:ci --savetoken --account $ {{ secrets.account_id }} --authid ${{ secrets.auth_id }} --tokenid ${{ secrets.token_id }} --tokensecret ${{ secrets.token_secret }}
-      - run: suitecloud project:validate
-      - run: suitecloud project:deploy
+name: Authenticate project against ${{ vars.NS_ACCOUNT_ID }}
+  run: ./node_modules/.bin/suitecloud account:savetoken --account ${{ vars.NS_ACCOUNT_ID }} --authid ${{ vars.NS_ACCOUNT_ID }} --tokenid ${{ secrets.NS_TOKEN_ID }} --tokensecret ${{ secrets.NS_TOKEN_SECRET }}
