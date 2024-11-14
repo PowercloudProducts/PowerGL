@@ -1,0 +1,30 @@
+name: NetSuite Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Suite CLI
+        run: npm install -g @oracle/suitecloud-cli
+        run: npm install -g typescript
+
+      - name: Deploy to Sandbox
+        env:
+          NS_ACCOUNT: ${{ secrets.SANDBOX_ACCOUNT }}
+          NS_EMAIL: ${{ secrets.SANDBOX_EMAIL }}
+          NS_PASSWORD: ${{ secrets.SANDBOX_PASSWORD }}
+          NS_ROLEID: ${{ secrets.SANDBOX_ROLEID }}
+          NS_APPID: ${{ secrets.SANDBOX_APPID }}
+        run: |
+          tsc
+          suitecloud project:validate
+          suitecloud project:deploy
