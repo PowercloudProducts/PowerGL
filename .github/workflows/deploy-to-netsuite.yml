@@ -24,14 +24,10 @@ jobs:
       - name: Install SuiteCloud CLI
         run: npm install -g @oracle/suitecloud-cli --acceptsuitecloudsdklicense
 
-      - name: Authenticate with NetSuite
+      - name: Set up SuiteCloud account configuration
         run: |
-          suitecloud account:configure \
-            --account ${{ secrets.NETSUITE_ACCOUNT }} \
-            --role ${{ secrets.NETSUITE_ROLE }} \
-            --email ${{ secrets.NETSUITE_EMAIL }} \
-            --token ${{ secrets.NETSUITE_TOKEN_ID }} \
-            --secret ${{ secrets.NETSUITE_TOKEN_SECRET }}
+          echo "Setting up SuiteCloud configuration..."
+          suitecloud account:setup --account ${{ secrets.NETSUITE_ACCOUNT }} --role ${{ secrets.NETSUITE_ROLE }} --email ${{ secrets.NETSUITE_EMAIL }} --token ${{ secrets.NETSUITE_TOKEN_ID }} --secret ${{ secrets.NETSUITE_TOKEN_SECRET }}
         
 
       - name: Deploy to NetSuite
