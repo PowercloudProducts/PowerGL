@@ -19,7 +19,7 @@ jobs:
           node-version: '14'
 
       - name: Install SuiteCloud CLI
-        run: sudo npm install -g @oracle/suitecloud-cli
+        run: npm install -g @oracle/suitecloud-cli --acceptsuitecloudsdklicense
 
       - name: Authenticate with NetSuite
         env:
