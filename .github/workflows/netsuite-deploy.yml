@@ -24,7 +24,3 @@ jobs:
           NS_PASSWORD: ${{ secrets.SANDBOX_PASSWORD }}
           NS_ROLEID: ${{ secrets.SANDBOX_ROLEID }}
           NS_APPID: ${{ secrets.SANDBOX_APPID }}
-        run: |
-          tsc
-          suitecloud project:validate
-          suitecloud project:deploy
