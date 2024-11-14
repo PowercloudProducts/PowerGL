@@ -25,7 +25,7 @@ jobs:
         run: npm install -g @oracle/suitecloud-cli --acceptsuitecloudsdklicense
 
       - name: Deploy to Sandbox
-        run: ./node_modules/.bin/suitecloud account:savetoken --account ${{ secrets.NETSUITE_ACCOUNT }} --role ${{ secrets.NETSUITE_ROLE }} --email ${{ secrets.NETSUITE_EMAIL }} --token ${{ secrets.NETSUITE_TOKEN_ID }} --secret ${{ secrets.NETSUITE_TOKEN_SECRET }}
+        run:  suitecloud account:savetoken --account ${{ secrets.NETSUITE_ACCOUNT }} --role ${{ secrets.NETSUITE_ROLE }} --email ${{ secrets.NETSUITE_EMAIL }} --token ${{ secrets.NETSUITE_TOKEN_ID }} --secret ${{ secrets.NETSUITE_TOKEN_SECRET }}
         
 
       - name: Deploy to NetSuite
