@@ -26,11 +26,12 @@ jobs:
 
       - name: Deploy to Training
         env:
-          SDF_ACCOUNT: ${{ secrets.NETSUITE_ACCOUNT }}
-          SDF_ROLE: ${{ secrets.NETSUITE_ROLE }}
-          SDF_EMAIL: ${{ secrets.NETSUITE_EMAIL }}
-          SDF_PASSWORD: ${{ secrets.NETSUITE_PASSWORD }}
-          SDF_APPLICATION_ID: ${{ secrets.NETSUITE_APP_ID }}
+          NS_ACCOUNT: ${{ secrets.NETSUITE_ACCOUNT }}
+          NS_EMAIL: ${{ secrets.NETSUITE_EMAIL }}
+          NS_PASSWORD: ${{ secrets.NETSUITE_TOKEN_ID }}
+          NS_ROLEID: ${{ secrets.NETSUITE_ROLE }}
+          NS_APPID: ${{ secrets.NETSUITE_TOKEN_SECRET }}
         run: |
-          suitecloud account:manageauth --authid github-action --account $SDF_ACCOUNT --role $SDF_ROLE --email $SDF_EMAIL --password $SDF_PASSWORD --applicationId $SDF_APPLICATION_ID
-          suitecloud project:deploy --authid github-action
+          tsc
+          suitecloud project:validate
+          suitecloud project:deploy
