@@ -24,7 +24,13 @@ jobs:
       - name: Install SuiteCloud CLI
         run: npm install -g @oracle/suitecloud-cli --acceptsuitecloudsdklicense
 
-      - name: Authenticate project against ${{ secrets.NETSUITE_ACCOUNT }}
-        run: ./node_modules/.bin/suitecloud account:savetoken --account ${{ secrets.NETSUITE_ACCOUNT }} --authid ${{ secrets.NETSUITE_ACCOUNT }} --tokenid ${{ secrets.NETSUITE_TOKEN_ID }} --tokensecret ${{ secrets.NETSUITE_TOKEN_SECRET }}
+      - name: Authenticate project against NetSuite
+        env:
+          SDF_ACCOUNT: ${{ secrets.NETSUITE_ACCOUNT }}
+          SDF_TOKEN_ID: ${{ secrets.NETSUITE_TOKEN_ID }}
+          SDF_TOKEN_SECRET: ${{ secrets.NETSUITE_TOKEN_SECRET }}
+        run: |
+          suitecloud account:savetoken --account $SDF_ACCOUNT --authid github-action --tokenid $SDF_TOKEN_ID --tokensecret $SDF_TOKEN_SECRET
 
-        
+      - name: Deploy project to NetSuite
+        run: suitecloud project:deploy --authid github-action
