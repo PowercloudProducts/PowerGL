@@ -32,4 +32,8 @@ jobs:
           NS_ROLEID: ${{ secrets.NETSUITE_ROLE }}
           NS_APPID: ${{ secrets.NETSUITE_TOKEN_SECRET }}
         run: |
-          authenticateci -authid AuthId -certificateid CertificateId -privatekeypath d:/path/private-key.pem -account ${{ secrets.NETSUITE_ACCOUNT }}
+              authenticateci [-account AccountId]  
+              [-authid AuthId]
+              [-certificateid CertificateId]
+              [-privatekeypath PrivateKeyPath]
+              [-url NetSuiteDomainURL] 
