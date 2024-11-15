@@ -24,16 +24,7 @@ jobs:
       - name: Install SuiteCloud CLI
         run: npm install -g @oracle/suitecloud-cli --acceptsuitecloudsdklicense
 
-      - name: Deploy to Training
-        env:
-          NS_ACCOUNT: ${{ secrets.NETSUITE_ACCOUNT }}
-          NS_EMAIL: ${{ secrets.NETSUITE_EMAIL }}
-          NS_PASSWORD: ${{ secrets.NETSUITE_TOKEN_ID }}
-          NS_ROLEID: ${{ secrets.NETSUITE_ROLE }}
-          NS_APPID: ${{ secrets.NETSUITE_TOKEN_SECRET }}
-        run: |
-              authenticateci [-account AccountId]  
-              [-authid AuthId]
-              [-certificateid CertificateId]
-              [-privatekeypath PrivateKeyPath]
-              [-url NetSuiteDomainURL] 
+      - name: Authenticate project against ${{ secrets.NETSUITE_ACCOUNT }}
+        run: ./node_modules/.bin/suitecloud account:savetoken --account ${{ secrets.NETSUITE_ACCOUNT }} --authid ${{ secrets.NETSUITE_ACCOUNT }} --tokenid ${{ secrets.NETSUITE_TOKEN_ID }} --tokensecret ${{ secrets.NETSUITE_TOKEN_SECRET }}
+
+        
