@@ -32,4 +32,4 @@ jobs:
           NS_ROLEID: ${{ secrets.NETSUITE_ROLE }}
           NS_APPID: ${{ secrets.NETSUITE_TOKEN_SECRET }}
         run: |
-          $ sdfcli authenticateci -authid AuthId -certificateid CertificateId -privatekeypath d:/path/private-key.pem -account AccountId
+          authenticateci -authid AuthId -certificateid CertificateId -privatekeypath d:/path/private-key.pem -account ${{ secrets.NETSUITE_ACCOUNT }}
