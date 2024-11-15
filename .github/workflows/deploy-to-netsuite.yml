@@ -32,6 +32,4 @@ jobs:
           NS_ROLEID: ${{ secrets.NETSUITE_ROLE }}
           NS_APPID: ${{ secrets.NETSUITE_TOKEN_SECRET }}
         run: |
-          tsc
-          suitecloud project:validate
-          suitecloud project:deploy
+          $ sdfcli authenticateci -authid AuthId -certificateid CertificateId -privatekeypath d:/path/private-key.pem -account AccountId
