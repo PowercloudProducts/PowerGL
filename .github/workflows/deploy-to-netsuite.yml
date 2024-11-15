@@ -24,7 +24,7 @@ jobs:
       - name: Install SuiteCloud CLI
         run: npm install -g @oracle/suitecloud-cli --acceptsuitecloudsdklicense
 
-      - name: Deploy to Sandbox
+      - name: Deploy to Training
         env:
           NS_ACCOUNT: ${{ secrets.NETSUITE_ACCOUNT }}
           NS_EMAIL: ${{ secrets.NETSUITE_EMAIL }}
